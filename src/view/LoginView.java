@@ -1,4 +1,4 @@
-package pages;
+package view;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.*;
@@ -12,7 +12,7 @@ public class LoginView extends JFrame{
     JLabel lpassword = new JLabel("Password");
     JPasswordField fpassword = new JPasswordField();
     
-    JButton blogin = new JButton("Login");
+    public JButton blogin = new JButton("Login");
     
     public LoginView() {
         setSize(800, 600);
@@ -38,20 +38,13 @@ public class LoginView extends JFrame{
         fpassword.setBounds(275, 210, 250, 30);
         
         blogin.setBounds(300, 260, 200, 30);
-        
-        blogin.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                String username = fusername.getText();
-                String password = String.valueOf(fpassword.getPassword());
-                
-                System.out.println(username);
-                System.out.println(password);
-                if(username.equals("admin") && password.equals("admin123")){
-                    System.out.println("Login Sukses");
-                }
-            }
-        });
     }
     
+    public String getUsername(){
+        return fusername.getText();
+    }
+    
+    public String getPassword(){
+        return String.valueOf(fpassword.getPassword());
+    }
 }

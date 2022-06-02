@@ -1,11 +1,13 @@
 package controller;
 
 import controller.admin.AdminController;
+import controller.employee.ParkingPageController;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.JOptionPane;
 import model.AdminModel;
 import model.LoginModel;
+import model.ParkingDataModel;
 import view.LoginView;
 import view.admin.AdminView;
 import view.employee.ParkingPageView;
@@ -31,7 +33,9 @@ public class LoginController {
                         AdminModel adminModel = new AdminModel();
                         AdminController AdminController = new AdminController(adminModel, adminView);
                     }else{
+                        ParkingDataModel parkingDataModel = new ParkingDataModel();
                         ParkingPageView parkingPageView = new ParkingPageView();
+                        ParkingPageController ppc = new ParkingPageController(parkingDataModel, parkingPageView, username);
                     }
                     loginView.dispose();
                 }else{

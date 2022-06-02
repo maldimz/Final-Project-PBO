@@ -13,6 +13,7 @@ import model.LoginModel;
 import view.LoginView;
 import view.admin.AdminView;
 import view.admin.ChangePassView;
+import view.admin.DataParkingView;
 
 public class AdminController {
     AdminModel adminModel;
@@ -143,6 +144,13 @@ public class AdminController {
             }
         });
         
+        adminView.bViewData.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent arg0) {
+                DataParkingView dataParkingView = new DataParkingView();
+                DataParkingController dpc = new DataParkingController(adminModel, dataParkingView);
+            }
+        });
     }
     
     public void updateTable(){

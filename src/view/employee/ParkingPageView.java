@@ -16,8 +16,8 @@ public class ParkingPageView extends JFrame {
     JLabel lPrice = new JLabel("Total Price");
     JLabel lIn = new JLabel("In Time");
     JLabel lOut = new JLabel("Out Time");
-    JLabel lIntime = new JLabel("12-12-2012 12:12:12");
-    JLabel lOuttime = new JLabel("12-12-2012 12:12:12");
+    JLabel lIntime = new JLabel("");
+    JLabel lOuttime = new JLabel("");
     
     JTextField tfId = new JTextField();
     JTextField tfLicense = new JTextField();
@@ -25,11 +25,12 @@ public class ParkingPageView extends JFrame {
     public JComboBox<String> cbVtype = new JComboBox<>(vType);
     
     public JButton bLogout = new JButton("Logout");
-    public JButton bTotal = new JButton("100");
+    public JButton bTotal = new JButton("");
     public JButton bIn = new JButton("In");
     public JButton bOut = new JButton("Out");
     public JButton bClear = new JButton("Clear");
     public JButton bCheck = new JButton("Check");
+    public JButton bAuto = new JButton("Auto");
         
     public ParkingPageView() {
         Font  f2  = new Font(Font.SANS_SERIF,  Font.BOLD, 30);
@@ -78,6 +79,9 @@ public class ParkingPageView extends JFrame {
         add(tfId);
         tfId.setBounds(col1, 80, 200, 30);
         
+        add(bAuto);
+        bAuto.setBounds(col2, 80, 100, 30);
+        
         add(lLicense);
         lLicense.setBounds(col1, 120, 200, 20);
         
@@ -102,6 +106,89 @@ public class ParkingPageView extends JFrame {
         add(tfPrice);
         tfPrice.setBounds(col1, 340, 200, 30);
         tfPrice.setEditable(false);
+    }
+    
+    public void setUsername(String username){
+        lEmployee.setText(username);
+    }
+    
+    public void setLicense(String license){
+        tfLicense.setText(license);
+    }
+    
+    public void setPrice(String price){
+        tfPrice.setText(price);
+    }
+    
+    public void setId(String id){
+        tfId.setText(id);
+    }
+    
+    public void setIn(String in){
+        lIntime.setText(in);
+    }
+    
+    public void setOut(String out){
+        lOuttime.setText(out);
+    }
+    
+    public void setIdTrans(String id){
+        tfId.setText(id);
+    }
+    
+    public void setTypes(String type){
+        if(type.equals("car")){
+            cbVtype.setSelectedIndex(0);
+        }else{
+            cbVtype.setSelectedIndex(1);
+        }
+    }
+    
+    public String getId(){
+        return tfId.getText();
+    }
+    
+    public String getLicense(){
+        return tfLicense.getText();
+    }
+    
+    public String getTypes(){
+        return cbVtype.getItemAt(cbVtype.getSelectedIndex());
+    }
+    
+    
+    public void clear(){
+        tfLicense.setText("");
+        tfId.setText("");
+        tfPrice.setText("");
+        lIntime.setText("");
+        lOuttime.setText("");
+        tfId.setEditable(true);
+        tfLicense.setEditable(true);
+        cbVtype.setEnabled(true);
+        bIn.setEnabled(true);
+        priceDisable();
+    }
+    
+    public void setRemaining(String remain){
+        bTotal.setText(remain);
+    }
+    
+    public void priceVisible(){
+        lPrice.setVisible(true);
+        tfPrice.setVisible(true);
+    }
+    
+    public void priceDisable(){
+        lPrice.setVisible(false);
+        tfPrice.setVisible(false);
+    }
+    
+    public void allDisabled(){
+        tfId.setEditable(false);
+        tfLicense.setEditable(false);
+        cbVtype.setEnabled(false);
+        bIn.setEnabled(false);
     }
     
 }

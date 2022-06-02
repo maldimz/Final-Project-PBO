@@ -7,6 +7,50 @@ public class AdminModel extends Connector {
     public AdminModel() {
     }
     
+    public int getRecapData(){
+        try {
+            int totalData = 0;
+            String query = "SELECT * FROM `recap`";
+            statement = connection.createStatement();
+            ResultSet resultSet = statement.executeQuery(query);
+            
+            while(resultSet.next()){
+                totalData++;
+            }
+            statement.close();
+            return totalData;
+        } catch (Exception e) {
+            System.out.println("Error : " + e.getMessage());
+            return 0;
+        }
+    }
+    
+    public String[][] readAllRecap(){
+        String data[][] = new String[getRecapData()][7];
+        try {
+            int indexData = 0;  
+            String query = "SELECT * FROM `recap`";
+            statement = connection.createStatement();
+            ResultSet resultSet = statement.executeQuery(query);
+            
+            while(resultSet.next()){
+                data[indexData][0] = resultSet.getString("id");
+                data[indexData][1] = resultSet.getString("license");
+                data[indexData][2] = resultSet.getString("type");
+                data[indexData][3] = resultSet.getString("price");
+                data[indexData][4] = resultSet.getString("in_time");
+                data[indexData][5] = resultSet.getString("out_time");
+                data[indexData][6] = resultSet.getString("user_id");
+                indexData++;
+            }
+            statement.close();
+            return data;
+        } catch (Exception e) {
+            System.out.println("Error : " + e.getMessage());
+            return data;
+        }
+    }
+    
     public int getUserData(){
         try {
             int totalData = 0;
